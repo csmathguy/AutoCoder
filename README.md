@@ -34,14 +34,23 @@ AutoCoder is an open-source project aimed at creating an AI-driven application t
 - Git
 - GitHub account (for API interactions)
 
+## Setup Instructions
+
+1. Copy `config_template.ini` to `config.ini`.
+2. Open `config.ini` and fill in your own API keys:
+   - `openai_api_key`
+   - `github_token`
+3. Save the file. Ensure it is located in the project's root directory.
+
+
 ### Installation
 
 1. **Clone the Repository**
 
-   ```bash
-   git clone https://github.com/yourusername/AutoCoder.git
-   cd AutoCoder
-   ```
+  ```bash
+  git clone https://github.com/yourusername/AutoCoder.git
+  cd AutoCoder
+  ```
 
 2. **Create a Virtual Environment**
 
@@ -61,10 +70,6 @@ AutoCoder is an open-source project aimed at creating an AI-driven application t
 ###Run the Application
 
   ```bash
-  python src/app.py
+  python src/main.py
   ```
-
-##Submit a Feature Request
-
-Access the web interface at http://localhost:5000 and submit your feature request.
 
