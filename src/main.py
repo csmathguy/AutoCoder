@@ -1,4 +1,5 @@
 # src/main.py
+
 import sys
 import os
 import uuid  # Import uuid for unique IDs
@@ -17,13 +18,13 @@ if __name__ == '__main__':
 
     # Create GitHub task to create a feature branch
     branch_name = feature_id
-    github_task = Task(
+    create_branch_task = Task(
         task_id=1,
         task_type='github',
         params={'action': 'create_branch', 'branch_name': branch_name},
         priority=1
     )
-    orchestrator.add_task(github_task)
+    orchestrator.add_task(create_branch_task)
 
     # Create code generation task
     code_gen_task = Task(
@@ -42,10 +43,23 @@ if __name__ == '__main__':
             'action': 'commit_code',
             'branch_name': branch_name,
             'file_name': f"{feature_id}.py",
-            'code': None  # Placeholder, will be updated after code generation
         },
         priority=3
     )
     orchestrator.add_task(commit_task)
+
+    # Add a task to create a pull request
+    pr_task = Task(
+        task_id=4,
+        task_type='github',
+        params={
+            'action': 'create_pull_request',
+            'branch_name': branch_name,
+            'title': f"Add feature {feature_id}",
+            'body': f"This PR adds the feature: {feature_description}"
+        },
+        priority=4
+    )
+    orchestrator.add_task(pr_task)
 
     orchestrator.execute_tasks()
