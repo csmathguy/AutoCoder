@@ -1,4 +1,5 @@
 # src/orchestrator/orchestrator.py
+
 import heapq
 from workers.code_generator_worker import CodeGeneratorWorker
 from workers.github_worker import GitHubWorker
@@ -22,6 +23,7 @@ class Orchestrator:
     def execute_tasks(self):
         while self.task_queue:
             priority, task = heapq.heappop(self.task_queue)
+            print(f"Orchestrator: Executing task {task.task_id} with priority {priority} and type '{task.task_type}'.")
             worker = self.workers.get(task.task_type)
             if worker:
                 worker.perform_task(task, self.context)
