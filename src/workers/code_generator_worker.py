@@ -16,7 +16,7 @@ class CodeGeneratorWorker(Worker):
             # Generate code
             code = self.code_generator_service.generate_code(feature_description)
             # Save code to file using feature_id
-            file_name = f"{feature_id}.py"
+            file_name = f"{feature_id}.json"
             self.file_service.save_code_to_file(code, file_name)
             print(f"Generated code saved to 'features/{file_name}'.")
             # Store code in context
